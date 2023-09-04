@@ -18,10 +18,8 @@ let getAboutPage =(req,res)=>{
     return res.render('test/about.ejs')
 }
 
-module.epxorts = {
-    getHomePage:getHomePage
-}
 
-module.exports = {getHomePage:getHomePage,
+module.exports = {
+    getHomePage:getHomePage,
     getAboutPage:getAboutPage
 };
