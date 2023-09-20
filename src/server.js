@@ -10,8 +10,10 @@ require("dotenv").config();
 let app = express();
 app.use(cors({origin:true}))
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded());
+app.use(bodyParser.json({limit:'500mb'}));
+app.use(bodyParser.urlencoded({limit:'500mb'}));
 // config view
 configViewEngine(app)
 // init web 
