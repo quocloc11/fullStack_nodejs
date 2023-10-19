@@ -49,20 +49,34 @@ let getAllDoctors=()=>{
 
     })
 }
+let checkRequiredFields=(inputData)=>{
+    let arrFields =['doctorId','contentHTML','contentMarkdown','action','selectedPrice',
+    'selectedPayment','selectedProvince','nameClinic','addressClinic',
+    'note','specialtyId'
+    ]
+    let isValid=true
+    let elemnt=''
+    for(let i=0; i<arrFields.length;i++){
+        if(!inputData[arrFields[i]]){
+            isValid=false
+            elemnt=arrFields[i]
+            break;
+        }
+    }
+    return{
+        isValid:isValid,
+        elemnt:elemnt
+    }
+}
 let saveDetailInforDoctor =(inputData)=>{
     return new Promise(async (resolve,reject)=>{
         try{
-            if(!inputData.doctorId 
-                || !inputData.contentHTML
-                || !inputData.contentMarkdown || !inputData.action
-                || !inputData.selectedPrice || !inputData.selectedPayment
-                || !inputData.selectProvince
-                || !inputData.nameClinic || !inputData.addressClinic
-                || !inputData.note
-                ){
+            let checkObj=checkRequiredFields(inputData)
+          if(checkObj.isValid===false)
+            {
                 resolve({
                     errCode:1,
-                    errMessage:'Missing prameter'
+                    errMessage:`Missing prameter: ${checkObj.elemnt}`
                 })
             }
             else{
@@ -100,6 +114,8 @@ let saveDetailInforDoctor =(inputData)=>{
                     doctorInfor.nameClinic=inputData.nameClinic;
                     doctorInfor.addressClinic=inputData.addressClinic;
                     doctorInfor.note=inputData.note;
+                    doctorInfor.specialtyId=inputData.specialtyId;
+                    doctorInfor.clinicId=inputData.clinicId;
                     await doctorInfor.save()
 
                 }else{
@@ -111,6 +127,8 @@ let saveDetailInforDoctor =(inputData)=>{
                         nameClinic:inputData.nameClinic,
                         addressClinic:inputData.addressClinic,
                         note:inputData.note,
+                        specialtyId:inputData.specialtyId,
+                        clinicId:inputData.clinicId,
                     })
                 }
                
