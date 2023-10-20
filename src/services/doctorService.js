@@ -109,7 +109,7 @@ let saveDetailInforDoctor =(inputData)=>{
                 if(doctorInfor){
                     doctorInfor.doctorId=inputData.doctorId;
                     doctorInfor.priceId=inputData.selectedPrice;
-                    doctorInfor.provinceId=inputData.selectProvince;
+                    doctorInfor.provinceId=inputData.selectedProvince;
                     doctorInfor.paymentId=inputData.selectedPayment;
                     doctorInfor.nameClinic=inputData.nameClinic;
                     doctorInfor.addressClinic=inputData.addressClinic;
